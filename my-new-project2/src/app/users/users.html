@@ -1,0 +1,50 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+
+  <header class="mdl-layout__header">
+    <acme-navbar creation-date="main.creationDate"></acme-navbar>
+  </header>
+
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Menu</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="#/">Welcome</a>
+      <a class="mdl-navigation__link" href="#/about">About</a>
+      <a class="mdl-navigation__link" href="#/users">Users</a>
+    </nav>
+  </div>
+
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Users</h2>
+      </div>
+      <div class="mdl-grid">
+        <ul>
+          <h2>Lista pobrana z api.github.com/users</h2><br />
+          Filtracja nazwa użytkowników:
+          <input type="text" ng-model="filterQuery" placeholder="Filtracja nazwa użytkowników" /><br />
+          Pierwsza wartość to id od którego ma się <u>rozpocząć</u> wyświetlanie: 
+          <input type="text" ng-model="filterID1" ng-init="filterID1='0'" placeholder="Od numeru ID" /><br />
+          Druga wartość to na jakim numerze ma się <u>skończyć</u>: 
+          <input type="text" ng-model="filterID2" ng-init="filterID2='1000'" placeholder="Do numeru ID" />
+          <div ng-repeat="user in users.userss | filter:filterQuery">
+            <div ng-if="user.id >= filterID1">
+              <div ng-if="user.id <= filterID2">
+                <li>{{user.login}}</li>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+  </main>
+
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__right-section">
+      <div class="mdl-logo">
+        With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>
+      </div>
+    </div>
+  </footer>
+
+</div>
